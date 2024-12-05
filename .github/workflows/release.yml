@@ -1,0 +1,32 @@
+name: Release Pipeline
+
+run-name: Release triggered by ${{ github.actor }} 👌
+
+on:
+    push:
+        tags:
+            - v*
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+            - name: Set up .NET 8
+              uses: actions/setup-dotnet@v4
+              with:
+                dotnet-version: 8
+            - name: Build Projects
+              run: |
+                docker build -t deo-frontend:latest ./Deo.Frontend/
+                docker build -t deo-backend:latest ./Deo.Backend/
+            - name: Tag and Release projects
+              run: |
+                docker image tag deo-frontend ghcr.io/skastenhofer/deo-frontend:latest
+                docker image tag deo-backend ghcr.io/skastenhofer/deo-backend:latest
+                docker push ghcr.io/skastenhofer/deo-frontend:latest
+                docker push ghcr.io/skastenhofer/deo-backend:latest
+                
