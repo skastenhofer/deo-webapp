@@ -19,14 +19,7 @@ jobs:
               uses: actions/setup-dotnet@v4
               with:
                 dotnet-version: 8
-            - name: Build Projects
+            - name: create release
               run: |
-                docker build -t deo-frontend:latest ./Deo.Frontend/
-                docker build -t deo-backend:latest ./Deo.Backend/
-            - name: Tag and Release projects
-              run: |
-                docker image tag deo-frontend ghcr.io/skastenhofer/deo-frontend:latest
-                docker image tag deo-backend ghcr.io/skastenhofer/deo-backend:latest
-                docker push ghcr.io/skastenhofer/deo-frontend:latest
-                docker push ghcr.io/skastenhofer/deo-backend:latest
+                gh release create
                 
