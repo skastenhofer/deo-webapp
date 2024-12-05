@@ -20,6 +20,8 @@ jobs:
               with:
                 dotnet-version: 8
             - name: create release
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                 gh release create
                 
