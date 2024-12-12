@@ -13,11 +13,11 @@ spec:
       labels:
         app: deo-backend
     spec:
-      imagePullSecrets:
-      - name: ghcr-login-secret
+      # imagePullSecrets:
+      # - name: ghcr-login-secret
       containers:
       - name: deo-backend
-        image: ghcr.io/skastenhofer/deo-backend:latest
+        image: ghcr.io/skastenhofer/deo-webapp-backend:latest
         args: ["--urls", "http://*:3000"]
         ports:
         - containerPort: 3000
