@@ -17,7 +17,7 @@ spec:
       # - name: ghcr-login-secret
       containers:
       - name: deo-backend
-        image: ghcr.io/skastenhofer/deo-webapp-backend:latest
+        image: ghcr.io/skastenhofer/deo-webapp-backend:v2.2
         args: ["--urls", "http://*:3000"]
         ports:
         - containerPort: 3000
